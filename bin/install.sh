@@ -11,7 +11,7 @@ echo "🔗 Applying macOS Symlinks"
 ln -sf "$DOTFILES_PATH/terminal/zsh/.zshrc" "$HOME/.zshrc"
 
 # To hide a login header on init bash
-touch .hushlogin
+touch "$HOME/.hushlogin"
 
 echo ""
 echo "✅ dotfiles are installed!"
