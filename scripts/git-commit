@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+git add -A
+
+if [ -z "$1" ]; then
+  echo "Not found message" 1>&2
+  exit 404;
+fi
+
+git commit -m"$1"

@@ -1,5 +1,5 @@
 alias gaa="git add -A"
-alias gc="dot git commit"
+alias gc="git-commit"
 alias gca="git add --all && git commit --amend --no-edit"
 alias gco="git checkout"
 alias gs="git status -sb"
