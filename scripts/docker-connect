@@ -1,0 +1,20 @@
+#!/bin/zsh
+
+if [ -z $1 ]; then
+  echo "Not pass a container name" 1>&2
+  exit 1;
+fi
+
+if docker ps >/dev/null 2>&1; then
+  CONTAINER_ID=$(docker container ls -f name="$1" -q)
+  CONTAINERS=$(echo "$CONTAINER_ID" | wc -w)
+  if [ $CONTAINERS -eq 1 ]; then
+    docker exec -it $CONTAINER_ID /bin/bash || docker exec -it $CONTAINER_ID /bin/sh
+  elif [ $CONTAINERS -eq 0 ]; then
+    echo "You haven't selected any container!"
+  else
+    echo "You have selected more than one container"
+  fi
+else
+  echo "Docker daemon is not running!"
+fi
