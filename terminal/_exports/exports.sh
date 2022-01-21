@@ -1,7 +1,6 @@
 PHP_PATH='/usr/local/Cellar/php@7.2/7.2.33'
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use
 
 paths=(
   "$HOME/bin"
