@@ -9,6 +9,7 @@ echo "👉  Cloning into: '$DOTFILES_PATH'"
 # To test that git is installed (if not macOS will prompt an installer)
 git --version
 
-git clone --depth 1 git@github.com:codelytv/dotfiles.git "$DOTFILES_PATH"
+#git clone --depth 1 git@github.com:aronmoles/dotfiles.git "$DOTFILES_PATH"
+#export DOTFILES_PATH="$HOME/dotfiles"
 
-"$DOTFILES_PATH/bin/dot" self install
+sh "$DOTFILES_PATH/bin/install.sh"
