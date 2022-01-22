@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+source "$DOTFILES_PATH/scripts/functions/_index.sh"
+
+DATABASE_NAME=$1
+
+args::checkExists "$DATABASE_NAME" "Database name is not defined"
+
+docker exec mysql mysql -u root --password=cuatroochenta -N -B -e "SELECT TABLE_NAME AS TABLE_NAME FROM information_schema.tables WHERE TABLE_SCHEMA = '$DATABASE_NAME';" | while read TABLE_NAME; do
+  echo "🔥 Truncating table: $TABLE_NAME";
+  docker exec mysql mysql -u root --password=cuatroochenta -e "SET FOREIGN_KEY_CHECKS=0; TRUNCATE TABLE $DATABASE_NAME.$TABLE_NAME; SET FOREIGN_KEY_CHECKS=1;";
+done

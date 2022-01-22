@@ -1,10 +1,9 @@
 #!/bin/zsh
 
-git add -A
+source "$DOTFILES_PATH/scripts/functions/_index.sh"
 
-if [ -z "$1" ]; then
-  echo "Not found message" 1>&2
-  exit 1;
-fi
+args::checkExists "$1" "Not found message"
+
+git add -A
 
 git commit -m"$1"

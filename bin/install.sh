@@ -14,4 +14,4 @@ ln -sf "$DOTFILES_PATH/terminal/zsh/.zshrc" "$HOME/.zshrc"
 touch "$HOME/.hushlogin"
 
 echo ""
-echo "✅ dotfiles are installed!"
+echo "✅ Dotfiles are installed!"
