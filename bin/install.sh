@@ -1,6 +1,7 @@
 #!/bin/zsh
 
-# Ask for the administrator password upfront
+echo ""
+echo "👑 Insert a sudo password"
 sudo -v
 
 echo ""
@@ -14,4 +15,4 @@ ln -sf "$DOTFILES_PATH/terminal/zsh/.zshrc" "$HOME/.zshrc"
 touch "$HOME/.hushlogin"
 
 echo ""
-echo "✅ Dotfiles are installed!"
+echo "✅  Dotfiles are installed!"
