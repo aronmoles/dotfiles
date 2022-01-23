@@ -1,6 +1,5 @@
 #!/bin/bash
 
-DOTFILES_PATH=~/dotfiles
 SERVICES=$(ls -l $DOTFILES_PATH/services | awk '{ print $9 }' | awk NF);
 SERVICE=$1
 SERVICE_ACTION=$2
