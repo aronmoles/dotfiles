@@ -7,7 +7,7 @@ sudo -v
 echo ""
 echo "🔗 Applying macOS Symlinks"
 
-[ -L "$HOME/.zshrc" ] && rm "$HOME/.zshrc"
+[ -L "$HOME/.zshrc" ] && rm "$HOME/.zshrc" # Si es un enlace simbólico lo eliminamos
 [ -s "$HOME/.zshrc" ] && mv -f "$HOME/.zshrc" "$HOME/.zshrc_original"
 ln -sf "$DOTFILES_PATH/terminal/zsh/.zshrc" "$HOME/.zshrc"
 

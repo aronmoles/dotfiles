@@ -1,0 +1,25 @@
+version: '3.7'
+
+services:
+  mysql:
+    image: mysql:5.7.22
+    container_name: mysql
+    env_file:
+      - "${DOTFILES_PATH}/.conf/.mysql"
+    volumes:
+      - mysql:/var/lib/mysql
+    ports:
+      - 3306:3306
+    restart: unless-stopped
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5
+    container_name: phpmyadmin
+    ports:
+      - 7000:80
+    env_file:
+      - "${DOTFILES_PATH}/.conf/.phpmyadmin"
+
+volumes:
+  mysql:
+    driver: local

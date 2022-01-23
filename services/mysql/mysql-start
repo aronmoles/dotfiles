@@ -1,0 +1,29 @@
+#!/bin/zsh
+
+CONFIG_ENV_PATH="$DOTFILES_PATH/.conf"
+
+MYSQL_ENV_FILE="$CONFIG_ENV_PATH/.mysql"
+PHPMYADMIN_ENV_FILE="$CONFIG_ENV_PATH/.phpmyadmin"
+
+if [ ! -f $MYSQL_ENV_FILE ]; then
+  echo "$MYSQL_ENV_FILE not exists"
+
+  while [ -z "$MYSQL_ROOT_PASSWORD" ]; do
+    vared -p "[mysql] Enter root password: " -c MYSQL_ROOT_PASSWORD
+  done
+
+  while [ -z "$MYSQL_USER" ]; do
+    vared -p "[mysql] Enter username: " -c MYSQL_USER
+  done
+
+  while [ -z "$MYSQL_PASSWORD" ]; do
+    vared -p "[mysql] Enter password: " -c MYSQL_PASSWORD
+  done
+
+  mkdir -p $CONFIG_ENV_PATH
+  echo "MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD\nMYSQL_USER=$MYSQL_USER\nMYSQL_PASSWORD=$MYSQL_PASSWORD" > $MYSQL_ENV_FILE
+  echo "PMA_HOST=host.docker.internal\nPMA_PORT=3306\nPMA_USER=root\nPMA_PASSWORD=$MYSQL_ROOT_PASSWORD" > $PHPMYADMIN_ENV_FILE
+fi
+
+
+docker-compose up -d
