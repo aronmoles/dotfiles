@@ -1,0 +1,4 @@
+#!/bin/zsh
+
+cd "$DOTFILES_PATH/services/rabbitmq/"
+docker-compose down

@@ -1,4 +1,0 @@
-PMA_HOST=host.docker.internal
-PMA_PORT=3306
-PMA_USER=root
-PMA_PASSWORD=root_password

@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  rabbit-mq:
+    image: rabbitmq:3.9-management
+    container_name: rabbit-mq
+    env_file:
+      - "${DOTFILES_PATH}/.conf/.rabbitmq"
+    ports:
+      - 15672:15672
+      - 5672:5672
+    restart: unless-stopped

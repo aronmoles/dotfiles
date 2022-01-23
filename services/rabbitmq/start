@@ -1,0 +1,26 @@
+#!/bin/zsh
+
+CONFIG_ENV_PATH="$DOTFILES_PATH/.conf"
+
+RABBITMQ_ENV_FILE="$CONFIG_ENV_PATH/.rabbitmq"
+
+if [ ! -f $RABBITMQ_ENV_FILE ]; then
+  echo "📃 Not exists $RABBITMQ_ENV_FILE"
+
+  while [ -z "$RABBITMQ_USER" ]; do
+    vared -p "👤 Enter username: " -c RABBITMQ_USER
+  done
+
+  while [ -z "$RABBITMQ_PASSWORD" ]; do
+    vared -p "🔐 Enter password: " -c RABBITMQ_PASSWORD
+  done
+
+  mkdir -p $CONFIG_ENV_PATH
+
+  echo "RABBITMQ_DEFAULT_USER=$RABBITMQ_USER\nRABBITMQ_DEFAULT_PASS=$RABBITMQ_PASSWORD" > $RABBITMQ_ENV_FILE
+  echo "📃 Created config file $RABBITMQ_ENV_FILE"
+fi
+
+
+cd "$DOTFILES_PATH/services/rabbitmq/"
+docker-compose up -d
