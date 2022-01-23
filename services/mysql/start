@@ -25,5 +25,5 @@ if [ ! -f $MYSQL_ENV_FILE ]; then
   echo "PMA_HOST=host.docker.internal\nPMA_PORT=3306\nPMA_USER=root\nPMA_PASSWORD=$MYSQL_ROOT_PASSWORD" > $PHPMYADMIN_ENV_FILE
 fi
 
-
+cd "$DOTFILES_PATH/services/mysql/"
 docker-compose up -d

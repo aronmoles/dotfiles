@@ -1,0 +1,39 @@
+#!/bin/bash
+
+DOTFILES_PATH=~/dotfiles
+SERVICES=$(ls -l $DOTFILES_PATH/services | awk '{ print $9 }' | awk NF);
+SERVICE=$1
+SERVICE_ACTION=$2
+
+function listServices() {
+  echo "Available services:"
+  for service in $SERVICES; do echo " * ${service}"; done
+}
+
+function listServiceActions() {
+  echo "Available actions to $1 service:"
+  local SERVICE_FILES=$(ls -l $DOTFILES_PATH/services/$1 | awk '{ print $9 }' | awk NF)
+  for action in $SERVICE_FILES; do [[ -x $DOTFILES_PATH/services/$1/$action ]] && echo " > ${action}"; done
+}
+
+function execAction() {
+    if [[ -z $SERVICE_ACTION || ! -x "$DOTFILES_PATH/services/$SERVICE/$SERVICE_ACTION" ]]; then
+      echo "❌  Action $SERVICE_ACTION not found into $SERVICE service"
+      listServiceActions $SERVICE
+      exit 1
+    fi
+
+    zsh "$DOTFILES_PATH/services/$SERVICE/$SERVICE_ACTION";
+}
+
+function execService() {
+  if [[ -z "$SERVICE" || ! -d "$DOTFILES_PATH/services/$SERVICE" ]]; then
+    echo "❌  Service $SERVICE not found"
+    listServices
+    exit 1
+  fi
+
+  execAction
+}
+
+execService
