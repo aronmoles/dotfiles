@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+docker-prune > /dev/null 2>&1 || true
+echo "🐳 docker pruned"
+
+#find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +
+echo "🗂 node_modules deleted"
+
+#yarn cache clean
+echo "🗂 clean yarn cache"
+
+echo "✅ Done!"
