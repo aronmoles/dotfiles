@@ -1,5 +1,6 @@
 #!/bin/zsh
 
+set -euo pipefail
 source "$DOTFILES_PATH/scripts/functions/_index.sh"
 
 DATABASE_NAME=$1
@@ -10,3 +11,5 @@ docker exec mysql mysql -u root --password=cuatroochenta -N -B -e "SELECT TABLE_
   echo "🔥 Truncating table: $TABLE_NAME";
   docker exec mysql mysql -u root --password=cuatroochenta -e "SET FOREIGN_KEY_CHECKS=0; TRUNCATE TABLE $DATABASE_NAME.$TABLE_NAME; SET FOREIGN_KEY_CHECKS=1;";
 done
+
+log::done

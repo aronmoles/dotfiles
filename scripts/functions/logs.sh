@@ -1,5 +1,5 @@
 #!/bin/zsh
 
 log::done() {
-  echo '✅  Done!'
+  echo "✅  Done!"
 }

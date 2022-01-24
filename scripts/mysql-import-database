@@ -1,5 +1,6 @@
 #!/bin/zsh
 
+set -euo pipefail
 source "$DOTFILES_PATH/scripts/functions/_index.sh"
 
 DATABASE_NAME=$1
@@ -9,3 +10,5 @@ args::checkExists "$DATABASE_NAME" "Database name is not defined"
 args::checkExists "$SQL_FILE" "SQL File is not defined"
 
 docker exec -i mysql mysql -u root --password=cuatroochenta "$DATABASE_NAME" < "$SQL_FILE"
+
+log::done

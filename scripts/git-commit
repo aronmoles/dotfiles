@@ -1,5 +1,6 @@
 #!/bin/zsh
 
+set -euo pipefail
 source "$DOTFILES_PATH/scripts/functions/_index.sh"
 
 args::checkExists "$1" "Not found message"
