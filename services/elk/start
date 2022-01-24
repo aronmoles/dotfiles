@@ -1,0 +1,4 @@
+#!/bin/zsh
+
+cd "$DOTFILES_PATH/services/elk/"
+docker-compose up -d
