@@ -5,16 +5,17 @@ echo "🚀 Welcome to the aronmoles/dotfiles installer!"
 echo "-------------------------------------------------"
 echo
 export DOTFILES_PATH="$HOME/.dotfiles"
-echo "👉 Cloning into: '$DOTFILES_PATH'"
 
 # To test that git is installed (if not macOS will prompt an installer)
 git --version
 
 if [ -d $DOTFILES_PATH ] && [ -d "$DOTFILES_PATH/.git" ]; then
+  echo "👉 Updating: '$DOTFILES_PATH'"
   cd $DOTFILES_PATH
   git reset --hard HEAD
   git pull
 else
+  echo "👉 Cloning into: '$DOTFILES_PATH'"
   rm -rf "$DOTFILES_PATH" || true
   git clone --depth 1 git@github.com:aronmoles/dotfiles.git "$DOTFILES_PATH"
 fi
