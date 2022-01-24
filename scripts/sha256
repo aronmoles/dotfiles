@@ -2,7 +2,7 @@
 
 source "$DOTFILES_PATH/scripts/functions/_index.sh"
 
-args::checkExists "$1" "text to hash not defined"
+args::check_exists "$1" "text to hash not defined"
 
 TOKEN=$(echo -n "$1" | openssl dgst -sha256)
 echo -n $TOKEN | pbcopy

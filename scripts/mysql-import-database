@@ -5,10 +5,11 @@ source "$DOTFILES_PATH/scripts/functions/_index.sh"
 
 DATABASE_NAME=$1
 SQL_FILE=$2
+MYSQL_ROOT_PASSWORD="$(conf::value "$DOTFILES_PATH/.conf/.mysql" MYSQL_ROOT_PASSWORD)"
 
-args::checkExists "$DATABASE_NAME" "Database name is not defined"
-args::checkExists "$SQL_FILE" "SQL File is not defined"
+args::check_exists "$DATABASE_NAME" "Database name is not defined"
+args::check_exists "$SQL_FILE" "SQL File is not defined"
 
-docker exec -i mysql mysql -u root --password=cuatroochenta "$DATABASE_NAME" < "$SQL_FILE"
+docker exec -i mysql mysql -u root --password="$MYSQL_ROOT_PASSWORD" "$DATABASE_NAME" < "$SQL_FILE"
 
 log::done

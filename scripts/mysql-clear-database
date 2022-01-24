@@ -4,12 +4,13 @@ set -euo pipefail
 source "$DOTFILES_PATH/scripts/functions/_index.sh"
 
 DATABASE_NAME=$1
+MYSQL_ROOT_PASSWORD="$(conf::value "$DOTFILES_PATH/.conf/.mysql" MYSQL_ROOT_PASSWORD)"
 
-args::checkExists "$DATABASE_NAME" "Database name is not defined"
+args::check_exists "$DATABASE_NAME" "Database name is not defined"
 
-docker exec mysql mysql -u root --password=cuatroochenta -N -B -e "SELECT TABLE_NAME AS TABLE_NAME FROM information_schema.tables WHERE TABLE_SCHEMA = '$DATABASE_NAME';" | while read TABLE_NAME; do
+docker exec mysql mysql -u root --password="$MYSQL_ROOT_PASSWORD" -N -B -e "SELECT TABLE_NAME AS TABLE_NAME FROM information_schema.tables WHERE TABLE_SCHEMA = '$DATABASE_NAME';" | while read TABLE_NAME; do
   echo "🔥 Drop table: $TABLE_NAME";
-  docker exec mysql mysql -u root --password=cuatroochenta -e "SET FOREIGN_KEY_CHECKS=0; DROP TABLE $DATABASE_NAME.$TABLE_NAME; SET FOREIGN_KEY_CHECKS=1;";
+  docker exec mysql mysql -u root --password="$MYSQL_ROOT_PASSWORD" -e "SET FOREIGN_KEY_CHECKS=0; DROP TABLE $DATABASE_NAME.$TABLE_NAME; SET FOREIGN_KEY_CHECKS=1;";
 done
 
 log:done
