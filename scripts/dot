@@ -1,0 +1,23 @@
+#!/bin/bash
+
+SCRIPTS=$(ls -l $DOTFILES_PATH/scripts | grep -v functions | grep -v dot | awk '{ print $9 }' | awk NF);
+SCRIPT=$1
+
+function listScripts() {
+  for script in $SCRIPTS; do echo " * ${script}"; done
+}
+
+function execScript() {
+  if [[ -z "$SCRIPT" ]]; then
+    listScripts
+    exit 0
+  fi
+  if [[ ! -x "$DOTFILES_PATH/scripts/$SCRIPT" ]]; then
+    echo "❌  Script $SCRIPT not found"
+    exit 1
+  fi
+
+  zsh "$DOTFILES_PATH/scripts/$SCRIPT" "$@";
+}
+
+execScript "${@:2}"
