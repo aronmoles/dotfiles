@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+source "$DOTFILES_PATH/scripts/functions/_index.sh"
+
+SIZE_PATH=$1
+
+if [ -z "$SIZE_PATH" ]; then
+  SIZE_PATH=$(pwd)
+fi
+
+
+du -hs $SIZE_PATH | awk '{ print $1 }'
