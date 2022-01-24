@@ -19,6 +19,7 @@ services:
       - 7000:80
     env_file:
       - "${DOTFILES_PATH}/.conf/.phpmyadmin"
+    restart: unless-stopped
 
 volumes:
   mysql:
