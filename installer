@@ -10,7 +10,7 @@ export DOTFILES_PATH="$HOME/.dotfiles"
 git --version
 
 if [ -d $DOTFILES_PATH ] && [ -d "$DOTFILES_PATH/.git" ]; then
-  echo "👉 Updating: '$DOTFILES_PATH'"
+  echo "👉 Updating dotfiles on: '$DOTFILES_PATH'"
   cd $DOTFILES_PATH
   git reset --hard HEAD
   git pull
