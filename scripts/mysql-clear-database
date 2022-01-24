@@ -13,4 +13,4 @@ docker exec mysql mysql -u root --password="$MYSQL_ROOT_PASSWORD" -N -B -e "SELE
   docker exec mysql mysql -u root --password="$MYSQL_ROOT_PASSWORD" -e "SET FOREIGN_KEY_CHECKS=0; DROP TABLE $DATABASE_NAME.$TABLE_NAME; SET FOREIGN_KEY_CHECKS=1;";
 done
 
-log:done
+log::done
