@@ -1,0 +1,29 @@
+#!/bin/zsh
+
+CONFIG_ENV_PATH="$DOTFILES_PATH/.conf"
+
+MONGODB_ENV_FILE="$CONFIG_ENV_PATH/.mongodb"
+MONGO_EXPRESS_ENV_FILE="$CONFIG_ENV_PATH/.mongo-express"
+
+if [ ! -f $MONGODB_ENV_FILE ]; then
+  echo "📃 Not exists $MONGODB_ENV_FILE"
+
+  while [ -z "$MONGODB_ROOT_USERNAME" ]; do
+    vared -p "👤 Enter root username: " -c MONGODB_ROOT_USERNAME
+  done
+
+  while [ -z "$MONGO_ROOT_PASSWORD" ]; do
+    vared -p "🔐 Enter root password: " -c MONGO_ROOT_PASSWORD
+  done
+
+  mkdir -p $CONFIG_ENV_PATH
+
+  echo "MONGO_INITDB_ROOT_USERNAME=$MONGODB_ROOT_USERNAME\nMONGO_INITDB_ROOT_PASSWORD=$MONGO_ROOT_PASSWORD" > $MONGODB_ENV_FILE
+  echo "📃 Created config file $MONGODB_ENV_FILE"
+
+  echo "ME_CONFIG_MONGODB_ADMINUSERNAME=$MONGODB_ROOT_USERNAME\nME_CONFIG_MONGODB_ADMINPASSWORD=$MONGO_ROOT_PASSWORD\nME_CONFIG_MONGODB_URL=mongodb://$MONGODB_ROOT_USERNAME:$MONGO_ROOT_PASSWORD@mongodb:27017/" > $MONGO_EXPRESS_ENV_FILE
+  echo "📃 Created config file $MONGO_EXPRESS_ENV_FILE"
+fi
+
+cd "$DOTFILES_PATH/services/mongodb/"
+docker-compose up -d
