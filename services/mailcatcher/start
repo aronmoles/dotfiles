@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+cd "$DOTFILES_PATH/services/mailcatcher/"
+docker-compose up -d
+
+echo "🖥️ Web ui run at: http://localhost:1080"
+echo "✉️ Email server run at: smtp://localhost:1025"

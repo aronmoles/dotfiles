@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  mailcatcher:
+    image: schickling/mailcatcher
+    container_name: mailcatcher
+    ports:
+      - 1080:1080
+      - 1025:1025
+    restart: unless-stopped
