@@ -1,10 +1,8 @@
-PHP_PATH='/usr/local/Cellar/php@7.2/7.2.33'
 
 export NVM_DIR="$HOME/.nvm"
 
 paths=(
   "$HOME/bin"
-  "$PHP_PATH/bin"
   "$HOME/.yarn/bin"
   "$HOME/.config/yarn/global/node_modules/.bin"
   "$DOTFILES_PATH/scripts"
