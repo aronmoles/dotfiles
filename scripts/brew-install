@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+set -euo pipefail
+source "$DOTFILES_PATH/scripts/functions/_index.sh"
+
+BREW_DIR="$DOTFILES_PATH/brew"
+BREW_PATH="$BREW_DIR/Brewfile"
+
+mkdir -p "$BREW_DIR"
+brew bundle dump -f --file "$BREW_PATH"
+
+log::done
