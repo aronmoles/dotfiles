@@ -6,10 +6,10 @@ source "$DOTFILES_PATH/scripts/functions/_index.sh"
 docker-prune > /dev/null 2>&1 || true
 echo "🐳 docker pruned"
 
-#find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +
+find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +
 echo "🗂 node_modules deleted"
 
 #yarn cache clean
-echo "🗂 clean yarn cache"
+#echo "🗂 clean yarn cache"
 
 log::done
