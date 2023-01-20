@@ -9,3 +9,4 @@ alias gpsf="git push --force"
 alias gpl="git pull --rebase --autostash"
 alias gb="git branch"
 alias grc="git rm -r --cached . && git add -A" # git reset cache
+alias grhh="git reset --hard HEAD"
