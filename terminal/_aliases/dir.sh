@@ -7,6 +7,3 @@ alias tt="ls --tree --level=2 --long"
 # Jumps
 alias home="cd $HOME"
 alias dotfiles="cd ~/.dotfiles"
-alias code="cd ~/Code"
-alias fixbik="cd ~/Code/Fixbik"
-alias unibo="cd ~/Code/Unibo"
