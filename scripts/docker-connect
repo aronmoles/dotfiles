@@ -3,10 +3,11 @@
 set -euo pipefail
 source "$DOTFILES_PATH/scripts/functions/_index.sh"
 
-args::check_exists "$1" "Not pass a container name"
+#args::check_exists "$1" "Not pass a container name"
 
 if docker ps >/dev/null 2>&1; then
-  CONTAINER_ID=$(docker container ls -f name="$1" -q)
+  CONTAINER_NAME=$(docker container ls -a --format {{.Names}} | fzf)
+  CONTAINER_ID=$(docker container ls -f name="$CONTAINER_NAME" -q)
   CONTAINERS=$(echo "$CONTAINER_ID" | wc -w)
   if [ $CONTAINERS -eq 1 ]; then
     docker exec -it $CONTAINER_ID /bin/bash || docker exec -it $CONTAINER_ID /bin/sh
@@ -18,3 +19,18 @@ if docker ps >/dev/null 2>&1; then
 else
   echo "👹 Docker daemon is not running!"
 fi
+
+## OLD VERSION
+#if docker ps >/dev/null 2>&1; then
+#  CONTAINER_ID=$(docker container ls -f name="$1" -q)
+#  CONTAINERS=$(echo "$CONTAINER_ID" | wc -w)
+#  if [ $CONTAINERS -eq 1 ]; then
+#    docker exec -it $CONTAINER_ID /bin/bash || docker exec -it $CONTAINER_ID /bin/sh
+#  elif [ $CONTAINERS -eq 0 ]; then
+#    echo "❌ You haven't selected any container!"
+#  else
+#    echo "🤯 You have selected more than one container"
+#  fi
+#else
+#  echo "👹 Docker daemon is not running!"
+#fi
